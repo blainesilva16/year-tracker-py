@@ -1,0 +1,8 @@
+.env
+year_tracker.db
+app.py
+/templates/test.html
+/static/test.css
+/static/test.js
+/__pycache__
+/.idea

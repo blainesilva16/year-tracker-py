@@ -1,0 +1,478 @@
+body {
+    /* background: linear-gradient(90deg, rgb(151, 139, 216) 0%, rgb(127, 230, 144) 50%, rgb(250, 187, 135) 100%); */
+    /* background-color:#0A0020; */
+    background-color: #2EC4B6;
+    padding:20px
+}
+
+#h1 {
+    color:white;
+    font-family: "Host Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+.back-button {
+    position:fixed;
+    z-index: 20; 
+    top:25px; 
+    left:25px;
+}
+.icon-link {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.tooltip-text-info {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 125%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  width:250px
+}
+.icon-link:hover .tooltip-text-info {
+  visibility: visible;
+  opacity: 1;
+}
+.icon-link.active .tooltip-text-info {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.container-tabs{
+    width:90%;
+    min-height: 82vh;
+    border:2px solid white;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.1);
+    padding: 20px;
+}
+
+.table-holder{
+    width:100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+}
+
+/*----- Tabs -----*/
+.tabs {
+	width:100%;
+	display:inline-block;
+  /* margin-top:20px; */
+}
+.tab-select{
+    display: none;
+    height:40px;
+    background-color:rgba(255, 255, 255, 0.1);
+    border:2px solid white;
+    border-radius:10px;
+    padding:4px 10px;
+    color:white;
+    width:90%;
+    margin:10px 0;
+    justify-self: center;
+}
+select:focus {
+    outline: none;
+    border: 2px solid #007bff; /* Change to your desired focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional shadow for focus */
+
+}
+option {
+    color:black;
+    border-radius: 10px;;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+	.tab-links:after {
+	display:block;
+	clear:both;
+	content:'';
+}
+
+.tab-links {
+  list-style: none;
+    margin: 0;
+    display: flex; /* Ensures horizontal layout */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping */
+    -webkit-overflow-scrolling: touch; /* Improves scrolling on touch devices */
+    /* Add scrollbar styling if desired for webkit browsers */
+    &::-webkit-scrollbar {
+        height: 8px; /* Adjust as needed */
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3); /* Lighter thumb for dark background */
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.tab-links li {
+	margin:0px 5px;
+	float:left;
+	list-style:none;
+    flex-shrink: 0; /* Prevents items from shrinking */
+}
+
+.tab-links a {
+	padding: 5px 20px;
+	display:flex;
+    gap:15px;
+    text-decoration: none;
+	border-radius:10px 10px 0px 0px;
+	background:#007bff;
+	font-size:16px;
+	font-weight:600;
+	color:#ffffff;
+	transition:all linear 0.15s;
+}
+
+.tab-links a:hover {
+	background:#0056b3;
+	text-decoration:none;
+}
+
+li.active a, li.active a:hover {
+	background:#fff;
+	color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+	padding:20px;
+	border-radius:20px;
+	background:white;
+    border:2px solid #ffffff;
+}
+
+.tab-content-inner{
+    width:100%;
+    display:grid;
+    grid-template-columns: 80% 20%;
+}
+
+.tab-content-bg{
+  width: 100%;
+  height: 100%;
+  /* background-color: white; */
+  border-radius: 10px;
+  /* padding:20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab {
+	display:none;
+}
+
+.tab.active {
+	display:block;
+    min-height:55vh
+}
+
+.year-calendar {
+    display: grid;
+    /* Define columns: 1 for month label, then 31 for days */
+    grid-template-columns: 30px repeat(31, 25px); /* Adjust 30px as needed for month label width */
+    /* Define rows: 1 for day numbers, then 12 for months */
+    grid-template-rows: 30px repeat(12, 25px); /* Adjust 30px for day number height */
+    /* border: 1px solid darkgray; /* Overall border for the grid */
+    justify-content: center; /* Center the calendar in the container */
+    align-items: center; /* Center the calendar in the container */ 
+}
+.year-calendar-vertical {
+    display: none; /* Hide the vertical calendar by default */
+    grid-template-columns: 30px repeat(12, 25px); /* month labels horizontally */
+    grid-template-rows: 30px repeat(31, 25px);    /* days vertically */
+    justify-content: center; /* Center the calendar in the container */
+    align-items: center; /* Center the calendar in the container */
+}
+
+/* Style for the day number cells (01, 02, ...) */
+.day-number-label {
+    width: 25px; /* Matches .year-day width */
+    height: 25px; /* Matches .year-day height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #555;
+    /* border: 1px solid lightgray; /* Or match your existing border */
+    box-sizing: border-box;
+}
+
+/* Style for the month label cells (J, F, M, ...) */
+.month-label {
+    width: 30px; /* Matches grid-template-columns first value */
+    height: 25px; /* Matches .year-day height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #555;
+    /* border: 1px solid lightgray; /* Or match your existing border */
+    box-sizing: border-box;
+}
+
+.year-day {
+    width: 25px;
+    height: 25px;
+    border: 1px solid white;
+    box-sizing: border-box; /* Crucial for consistent sizing */
+    /* Add any default styling for the year-day boxes here */
+    background-color: #f0f0f0; /* Example default background */
+    transition: 0.3s;
+}
+
+.year-day:hover{
+    background-color: #b6b5b5;
+    transition: 0.3s;
+}
+
+/* Specific styling for the top-left empty corner cell */
+.year-calendar > .empty-corner {
+    grid-column: 1;
+    grid-row: 1;
+    /* border: 1px solid lightgray; /* Or match your existing border */
+    box-sizing: border-box;
+}
+
+.year-reference{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.year-reference-horizontal{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    border-radius:20px 20px 0 0;
+    /* position:fixed; */
+    bottom: 0;
+    /* left:0; */
+    width:100%;
+    padding: 15px;
+}
+
+.color-codes{
+    height:100%
+}
+.color-codes-horizontal{
+    display:flex;
+    gap:10px;
+    overflow-y: auto;
+    flex-wrap: wrap;
+}
+
+.color-code{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom: 1px solid #eee;
+}
+.color-code:last-child {
+    border-bottom: none; /* No border for the last one */
+}
+.color-code:hover .color-options {
+    display: flex; /* Show options on hover of the entire color-code div */
+}
+.color-code-horizontal{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.color-info{
+    width:100%;
+    display:flex;
+    gap:5px
+}
+
+.color-options {
+    display: none; /* Hidden by default */
+    gap: 10px;
+}
+
+.color-options i,.track-options i {
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.color-options i:hover, .track-options i:hover {
+    color: #007bff; /* Hover color for icons */
+}
+.color-options i.fa-trash:hover, .track-options i.fa-trash:hover {
+    color: #dc3545; /* Red for trash icon */
+}
+
+.track-options {
+    display:none;
+    gap:10px;
+}
+
+.track-options.active{
+    display: flex;
+}
+
+.color{
+    background-color: #89eecc;
+    width:15px;
+    height:15px;
+    border-radius:50%
+}
+
+button {
+    background-color:#007bff;
+    color: white;
+    border:none;
+    border-radius:10px;
+    height:40px;
+    padding-left:20px;
+    padding-right:20px;
+    transition: background-color 0.3s ease;
+}
+button:hover { background-color: #0056b3; }
+
+input {
+    width:150px;
+    border:none;
+    padding:10px 5px
+}
+
+input[type='color']{
+    padding:0;
+    width:100%;
+    align-self:center
+}
+
+input:focus{
+    outline: none;
+}
+
+/* Specific styling for months with fewer days to control their placement */
+/* You'll need to target the specific .year-day elements for each month.
+   This can get a bit complex with just CSS if you're not using a more dynamic
+   templating engine or JavaScript to assign classes. */
+
+/* A more robust solution for positioning would involve JavaScript or
+   a templating engine that can add classes to the first day of each month. */
+
+/* For example, if you could add a class like "month-start" to the first day of each month: */
+/*
+.year-calendar .month-start {
+    grid-column: 1 / span 1; // Ensures it starts in the first column
+}
+*/
+
+/* Without that, the grid will naturally flow. The key is setting grid-template-columns
+   to 31, and then each new set of days will automatically wrap to the next row
+   if they exceed the 31-column limit. The number of `div.year-day` elements
+   for each month will determine how many rows are implicitly created or filled. */
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+    .year-calendar-vertical {
+        display:grid
+    }
+    .year-calendar {
+        display: none; /* Hide the default year calendar on smaller screens */
+    }
+    .tab-content-inner{
+        grid-template-columns: 65% 35%;
+    }
+}
+
+@media (max-width: 900px) {   
+    .container-tabs{
+        width:100%;
+    }
+    .back-button{
+        top:10px;
+        left:10px
+    }
+    body{
+        padding:5px;
+    }
+     .tab-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:0
+    }
+    .tab-links li {
+        margin: 5px 0;
+        width: 100%;
+    }
+    .tab-links a {
+        width: 100%;
+        text-align: center;
+        border-radius: 10px;
+    }
+}
+@media (max-width: 660px) {
+    .container-tabs{
+        padding:0
+    }
+    .table-holder{
+        padding:0
+    }
+    .tab-content {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+    .tab-content-inner{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    
+    .year-reference{
+        display:none;
+    }
+    .year-reference-horizontal{
+        display: inline;
+    }
+    .tab-links{
+        display: none;
+    }
+    .tab-select{
+        display:block
+    }
+}
+@media (max-width:480px) {
+    .day-number-label, .month-label {
+        font-size: 0.7em; /* Smaller font size for mobile */
+    }
+    .year-calendar-vertical {
+        display: grid; /* Show vertical layout on smaller screens */
+        grid-template-columns: 30px repeat(12, 20px); /* month labels horizontally */
+        grid-template-rows: 30px repeat(31, 20px);
+    }
+    .year-day {
+        width: 20px;
+        height: 20px;
+    }
+}
