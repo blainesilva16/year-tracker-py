@@ -2,12 +2,7 @@ from flask import Flask, render_template, jsonify, request,send_file
 from flask_bootstrap import Bootstrap5
 import os,dotenv,time
 from flask_sqlalchemy import SQLAlchemy
-# from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-# from sqlalchemy import Integer, String, Boolean
 from flask_migrate import Migrate
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql import func # For default timestamps
 
 app = Flask(__name__)
